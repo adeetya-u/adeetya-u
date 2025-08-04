@@ -1,50 +1,102 @@
-<div align="center">
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>adeetya-u - VS Code</title>
+    <style>
+        body { margin: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        .vscode-container { display: flex; height: 100vh; background: #1e1e1e; color: #cccccc; }
+        .sidebar { width: 300px; background: #252526; border-right: 1px solid #333; }
+        .main-content { flex: 1; background: #1e1e1e; }
+        .sidebar-header { padding: 10px; font-size: 11px; text-transform: uppercase; color: #888; font-weight: bold; }
+        .file-explorer { padding: 0; }
+        .file-item { padding: 8px 20px; cursor: pointer; display: flex; align-items: center; font-size: 13px; }
+        .file-item:hover { background: #2a2d2e; }
+        .file-item.active { background: #094771; }
+        .file-icon { margin-right: 8px; }
+        .welcome-screen { padding: 40px; text-align: center; }
+        .welcome-title { font-size: 24px; margin-bottom: 30px; color: #cccccc; }
+        .shortcuts { text-align: left; max-width: 400px; margin: 0 auto; }
+        .shortcut-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #333; }
+        .shortcut-keys { background: #333; padding: 4px 8px; border-radius: 3px; font-size: 11px; }
+        .status-bar { position: fixed; bottom: 0; left: 0; right: 0; height: 22px; background: #0078d4; display: flex; align-items: center; justify-content: space-between; padding: 0 10px; font-size: 12px; }
+    </style>
+</head>
+<body>
 
-![VS Code](https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white)
+<div class="vscode-container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-header">📁 PORTFOLIO</div>
+        <div class="file-explorer">
+            <div class="file-item active">
+                <span class="file-icon">🏠</span>
+                <span>Welcome.md</span>
+            </div>
+            <div class="file-item">
+                <span class="file-icon">👨‍💻</span>
+                <span>About.ts</span>
+            </div>
+            <div class="file-item">
+                <span class="file-icon">🛠️</span>
+                <span>Skills.ts</span>
+            </div>
+            <div class="file-item">
+                <span class="file-icon">🚀</span>
+                <span>Projects.ts</span>
+            </div>
+            <div class="file-item">
+                <span class="file-icon">📊</span>
+                <span>Analytics.json</span>
+            </div>
+            <div class="file-item">
+                <span class="file-icon">🌐</span>
+                <span>Contact.json</span>
+            </div>
+        </div>
+    </div>
 
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="welcome-screen">
+            <h1 class="welcome-title">Welcome to My Portfolio!</h1>
+            
+            <div class="shortcuts">
+                <div class="shortcut-item">
+                    <span>To view pages</span>
+                    <span class="shortcut-keys">CTRL + P</span>
+                </div>
+                <div class="shortcut-item">
+                    <span>To change theme</span>
+                    <span class="shortcut-keys">CTRL + T</span>
+                </div>
+                <div class="shortcut-item">
+                    <span>To toggle mode</span>
+                    <span class="shortcut-keys">CTRL + M</span>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
-<div style="background: #1e1e1e; border-radius: 10px; padding: 20px; margin: 20px 0;">
-
-## `📁 adeetya-u/` 
-
-<div style="display: flex; gap: 20px; margin-top: 20px;">
-
-<div style="flex: 1; background: #252526; padding: 15px; border-radius: 5px;">
-
-### 🗂️ **EXPLORER**
-```
-📁 src/
-├── 📂 components/
-├── 📂 pages/
-├── 📂 hooks/
-└── 📂 utils/
-📁 ml-models/
-├── 📄 forecasting.py
-├── 📄 classification.py
-└── 📄 feature_engineering.py
-📁 api/
-├── 📄 routes.py
-├── 📄 models.py
-└── 📄 middleware.py
-📁 database/
-└── 📄 schema.sql
-📄 README.md
-📄 package.json
-📄 requirements.txt
-```
-
-### 🔗 **QUICK LINKS**
-- 💼 [LinkedIn](https://www.linkedin.com/in/adeetya-upadhyay/)
-- 📧 [Email](mailto:adeetya.upadhyay@gmail.com)
-- 🐙 [GitHub](https://github.com/adeetya-u)
-- 📞 **+1 (765) 977-2984**
-
+<!-- Status Bar -->
+<div class="status-bar">
+    <div>
+        <span>👤 @adeetya-u</span>
+        <span style="margin-left: 20px;">🔥 85+ followers</span>
+        <span style="margin-left: 20px;">⭐ 120+ stars</span>
+    </div>
+    <div>
+        <span>⏰ coding: 2,397 hrs 23 mins</span>
+    </div>
 </div>
 
-<div style="flex: 2; background: #1e1e1e; padding: 15px; border-radius: 5px;">
+</body>
+</html>
 
-### 📄 **`developer.ts`** — *adeetya-u*
+---
+
+# 👨‍💻 About Me
 
 ```typescript
 const developer = {
@@ -77,60 +129,15 @@ const developer = {
 export default developer;
 ```
 
-</div>
-
-</div>
-
-</div>
+## 🔗 Quick Links
+- 💼 [LinkedIn](https://www.linkedin.com/in/adeetya-upadhyay/)
+- 📧 [Email](mailto:adeetya.upadhyay@gmail.com)
+- 🐙 [GitHub](https://github.com/adeetya-u)
+- 📞 **+1 (765) 977-2984**
 
 ---
 
-<div style="background: #1e1e1e; border-radius: 10px; padding: 20px; margin: 20px 0;">
-
-## 🛠️ **Tech Stack**
-
-<div style="display: flex; gap: 20px; margin-top: 20px;">
-
-<div style="flex: 1; background: #252526; padding: 15px; border-radius: 5px;">
-
-### 📁 **SKILLS**
-```
-🐍 languages/
-├── Python
-├── Java  
-├── C++
-├── JavaScript/TypeScript
-├── R, SQL, HTML, CSS
-└── Bash, COBOL, JCL
-
-⚛️ frameworks/
-├── React, Node.js
-├── Express, Flask
-├── FastAPI, Redux
-└── REST, GraphQL
-
-☁️ cloud/
-├── AWS (EC2,S3,RDS,λ)
-├── Azure (Functions,DF)
-└── GCP (BigQuery,Pub/Sub)
-
-🤖 ml-data/
-├── NumPy, Pandas, Matplotlib
-├── scikit-learn
-├── TensorFlow, PyTorch
-└── Apache Spark
-
-🛠️ tools/
-├── Git, Docker
-├── CI/CD, Microservices
-└── SAP, z/OS
-```
-
-</div>
-
-<div style="flex: 2; background: #1e1e1e; padding: 15px; border-radius: 5px;">
-
-### 📄 **`tech-stack.ts`**
+# 🛠️ Skills & Technologies
 
 ```typescript
 interface TechStack {
@@ -158,20 +165,13 @@ const myStack: TechStack = {
     ],
     
     cloud: ["AWS", "Azure", "GCP"],
-    
     databases: ["PostgreSQL", "SQLite", "NoSQL"],
-    
     tools: ["Git", "Docker", "CI/CD", "Microservices"],
-    
     specialties: ["ML Engineering", "Full Stack", "AI Integration"]
 };
 
 export { myStack };
 ```
-
-</div>
-
-</div>
 
 ### 💻 **Languages & Technologies**
 
@@ -188,135 +188,9 @@ export { myStack };
 ![TensorFlow](https://img.shields.io/badge/TensorFlow-FF6F00?style=flat&logo=tensorflow&logoColor=white)
 ![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=flat&logo=pytorch&logoColor=white)
 
-</div>
-
 ---
 
-<div style="background: #1e1e1e; border-radius: 10px; padding: 20px; margin: 20px 0;">
-
-## 📊 **GitHub Analytics**
-
-<div style="display: flex; gap: 20px; margin-top: 20px;">
-
-<div style="flex: 1; background: #252526; padding: 15px; border-radius: 5px;">
-
-### 📁 **ANALYTICS**
-```
-📈 contributions/
-├── Daily commits
-├── Language usage
-└── Activity heatmap
-
-🏆 achievements/
-├── 🔥 Current Streak: 45+ days
-├── 📚 Public Repos: 15+
-├── ⭐ Total Stars: 120+
-└── 👥 Followers: 85+
-
-🎯 2025 goals/
-├── ☑️ 365 day commit streak
-├── ⏳ 10 major projects
-├── ⏳ 1000 GitHub stars
-└── ⏳ Open source contrib
-```
-
-### 📈 **ACTIVITY**
-- **Today**: 8 contributions
-- **This Week**: 42 contributions  
-- **This Month**: 187 contributions
-
-</div>
-
-<div style="flex: 2; background: #1e1e1e; padding: 15px; border-radius: 5px;">
-
-### 📄 **`github-stats.json`**
-
-```json
-{
-    "developer": "adeetya-u",
-    "totalCommits": "500+",
-    "languageStats": {
-        "Python": "35%",
-        "JavaScript": "28%", 
-        "TypeScript": "15%",
-        "Java": "12%",
-        "Other": "10%"
-    },
-    "contributionLevel": "very_high",
-    "preferredStack": [
-        "React + Flask",
-        "ML + Cloud", 
-        "Python + TypeScript"
-    ],
-    "status": "actively_building",
-    "currentProjects": [
-        "TutorSwap Platform",
-        "AI Grant Matcher",
-        "ML Forecasting Models"
-    ]
-}
-```
-
-</div>
-
-</div>
-
-<div align="center">
-
-![GitHub Stats](https://github-readme-stats.vercel.app/api?username=adeetya-u&show_icons=true&theme=vs-dark&hide_border=true&bg_color=1e1e1e&icon_color=58a6ff&text_color=c9d1d9&title_color=58a6ff)
-
-![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=adeetya-u&layout=compact&theme=vs-dark&hide_border=true&bg_color=1e1e1e&text_color=c9d1d9&title_color=58a6ff)
-
-</div>
-
-</div>
-
----
-
-<div style="background: #1e1e1e; border-radius: 10px; padding: 20px; margin: 20px 0;">
-
-## 🚀 **Featured Projects**
-
-<div style="display: flex; gap: 20px; margin-top: 20px;">
-
-<div style="flex: 1; background: #252526; padding: 15px; border-radius: 5px;">
-
-### 📁 **REPOSITORIES**
-```
-🎓 tutorswap/
-├── 🔹 React Frontend
-├── 🔸 Flask Backend  
-├── 🔹 PostgreSQL DB
-└── 🔸 Socket.IO Chat
-
-🤖 ai-grant-matcher/
-├── 🔹 React + Redux
-├── 🔸 Flask API
-├── 🔹 OpenAI Integration
-└── 🔸 AWS Deployment
-
-📊 ml-forecasting/
-├── 🔹 Time-series Models
-├── 🔸 Feature Engineering
-└── 🔹 Infrastructure Pred
-
-🏢 enterprise-tools/
-├── 🔹 SAP Integration
-├── 🔸 Process Automation
-└── 🔹 KPI Detection
-```
-
-### 🎯 **WHAT I BUILD**
-- 🧠 **ML Engineering**
-- 🌐 **Full Stack Apps**  
-- 🤖 **AI Integration**
-- ☁️ **Cloud Solutions**
-
-</div>
-
-<div style="flex: 2; background: #1e1e1e; padding: 15px; border-radius: 5px;">
-
-### 📄 **`projects.py`**
+# 🚀 Featured Projects
 
 ```python
 class ProjectPortfolio:
@@ -357,58 +231,64 @@ class ProjectPortfolio:
         ]
 ```
 
-</div>
+### 🎯 **What I Build**
+- 🧠 **ML Engineering** - Predictive models and data pipelines
+- 🌐 **Full Stack Apps** - End-to-end web applications  
+- 🤖 **AI Integration** - Smart features and automation
+- ☁️ **Cloud Solutions** - Scalable infrastructure
 
-</div>
+---
+
+# 📊 GitHub Analytics
+
+```json
+{
+    "developer": "adeetya-u",
+    "totalCommits": "500+",
+    "languageStats": {
+        "Python": "35%",
+        "JavaScript": "28%", 
+        "TypeScript": "15%",
+        "Java": "12%",
+        "Other": "10%"
+    },
+    "contributionLevel": "very_high",
+    "preferredStack": [
+        "React + Flask",
+        "ML + Cloud", 
+        "Python + TypeScript"
+    ],
+    "status": "actively_building",
+    "currentProjects": [
+        "TutorSwap Platform",
+        "AI Grant Matcher",
+        "ML Forecasting Models"
+    ]
+}
+```
+
+### 🏆 **Achievements**
+- 🔥 Current Streak: 45+ days
+- 📚 Public Repos: 15+
+- ⭐ Total Stars: 120+
+- 👥 Followers: 85+
+
+### 📈 **Recent Activity**
+- **Today**: 8 contributions
+- **This Week**: 42 contributions  
+- **This Month**: 187 contributions
+
+<div align="center">
+
+![GitHub Stats](https://github-readme-stats.vercel.app/api?username=adeetya-u&show_icons=true&theme=vs-dark&hide_border=true&bg_color=1e1e1e&icon_color=58a6ff&text_color=c9d1d9&title_color=58a6ff)
+
+![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=adeetya-u&layout=compact&theme=vs-dark&hide_border=true&bg_color=1e1e1e&text_color=c9d1d9&title_color=58a6ff)
 
 </div>
 
 ---
 
-<div style="background: #1e1e1e; border-radius: 10px; padding: 20px; margin: 20px 0;">
-
-## 🌐 **Let's Connect**
-
-<div style="display: flex; gap: 20px; margin-top: 20px;">
-
-<div style="flex: 1; background: #252526; padding: 15px; border-radius: 5px;">
-
-### 📁 **CONNECT**
-```
-💼 professional/
-├── LinkedIn Profile
-└── GitHub Portfolio
-
-📧 email/
-└── adeetya.upadhyay@gmail.com
-
-📞 phone/
-└── +1 (765) 977-2984
-
-🌍 location/
-└── Champaign, IL
-```
-
-### 🏆 **LEADERSHIP**
-- 📊 **OTCR Consulting** - Lead Consultant
-- 💼 **Illinois Business Consulting** - Senior Consultant
-
-### 🚀 **CURRENTLY LEARNING**
-- Advanced PyTorch
-- Kubernetes  
-- System Design
-
-### 📊 **QUICK STATS**
-- 🔥 GitHub Streak: 45+ days
-- ⭐ Profile Views: 5000+
-- 📂 Public Repos: 15+
-- 🤝 Open to Collaborate
-
-</div>
-
-<div style="flex: 2; background: #1e1e1e; padding: 15px; border-radius: 5px;">
-
-### 📄 **`contact.json`**
+# 🌐 Contact & Connect
 
 ```json
 {
@@ -438,16 +318,22 @@ class ProjectPortfolio:
     "status": "actively_building",
     "motto": "Always coding, always learning, always growing"
 }
-
-// Thanks for visiting my profile!
-// Let's build something amazing together 🚀
 ```
 
-</div>
+### 🏆 **Leadership Experience**
+- 📊 **OTCR Consulting** - Lead Consultant
+- 💼 **Illinois Business Consulting** - Senior Consultant
 
-</div>
+### 🚀 **Currently Learning**
+- Advanced PyTorch
+- Kubernetes  
+- System Design
 
-</div>
+### 📊 **Quick Stats**
+- 🔥 GitHub Streak: 45+ days
+- ⭐ Profile Views: 5000+
+- 📂 Public Repos: 15+
+- 🤝 Open to Collaborate
 
 ---
 
@@ -460,12 +346,6 @@ class ProjectPortfolio:
 [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/adeetya-u)
 
 ![Profile Views](https://komarev.com/ghpvc/?username=adeetya-u&color=0078d4&style=flat&label=Profile+Views)
-
-<div style="margin-top: 20px;">
-
-![GitHub Stats](https://github-readme-stats.vercel.app/api?username=adeetya-u&show_icons=true&theme=vs-dark&hide_border=true&bg_color=1e1e1e&icon_color=58a6ff&text_color=c9d1d9&title_color=58a6ff)
-
-</div>
 
 **Thanks for visiting! Always coding, always learning, always growing** 🚀
 
