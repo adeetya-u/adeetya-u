@@ -1,78 +1,420 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>adeetya-u - VS Code</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>adeetya-u - Visual Studio Code</title>
     <style>
-        body { margin: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        .vscode-container { display: flex; height: 100vh; background: #1e1e1e; color: #cccccc; }
-        .sidebar { width: 300px; background: #252526; border-right: 1px solid #333; }
-        .main-content { flex: 1; background: #1e1e1e; }
-        .sidebar-header { padding: 10px; font-size: 11px; text-transform: uppercase; color: #888; font-weight: bold; }
-        .file-explorer { padding: 0; }
-        .file-item { padding: 8px 20px; cursor: pointer; display: flex; align-items: center; font-size: 13px; }
-        .file-item:hover { background: #2a2d2e; }
-        .file-item.active { background: #094771; }
-        .file-icon { margin-right: 8px; }
-        .welcome-screen { padding: 40px; text-align: center; }
-        .welcome-title { font-size: 24px; margin-bottom: 30px; color: #cccccc; }
-        .shortcuts { text-align: left; max-width: 400px; margin: 0 auto; }
-        .shortcut-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #333; }
-        .shortcut-keys { background: #333; padding: 4px 8px; border-radius: 3px; font-size: 11px; }
-        .status-bar { position: fixed; bottom: 0; left: 0; right: 0; height: 22px; background: #0078d4; display: flex; align-items: center; justify-content: space-between; padding: 0 10px; font-size: 12px; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #1e1e1e;
+            color: #cccccc;
+            overflow: hidden;
+        }
+        
+        /* Title Bar */
+        .title-bar {
+            height: 30px;
+            background: #3c3c3c;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 10px;
+            font-size: 13px;
+        }
+        
+        .window-controls {
+            display: flex;
+            gap: 5px;
+        }
+        
+        .control-btn {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        
+        .control-btn.close { background: #ff5f57; }
+        .control-btn.minimize { background: #ffbd2e; }
+        .control-btn.maximize { background: #28ca42; }
+        
+        .title-text {
+            color: #cccccc;
+            font-size: 13px;
+        }
+        
+        /* Main Container */
+        .vscode-container {
+            display: flex;
+            height: calc(100vh - 52px);
+        }
+        
+        /* Activity Bar */
+        .activity-bar {
+            width: 48px;
+            background: #333333;
+            border-right: 1px solid #444444;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px 0;
+        }
+        
+        .activity-item {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            margin-bottom: 5px;
+            border-left: 2px solid transparent;
+            position: relative;
+        }
+        
+        .activity-item:hover {
+            background: #2a2d2e;
+        }
+        
+        .activity-item.active {
+            background: #094771;
+            border-left-color: #0078d4;
+        }
+        
+        .activity-item svg {
+            fill: #cccccc;
+            width: 24px;
+            height: 24px;
+        }
+        
+        /* Side Panel */
+        .side-panel {
+            width: 300px;
+            background: #252526;
+            border-right: 1px solid #3e3e42;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .panel-header {
+            height: 35px;
+            background: #2d2d30;
+            display: flex;
+            align-items: center;
+            padding: 0 15px;
+            font-size: 11px;
+            text-transform: uppercase;
+            color: #cccccc;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        
+        .file-explorer {
+            flex: 1;
+            overflow-y: auto;
+        }
+        
+        .folder {
+            padding: 8px 16px;
+            display: flex;
+            align-items: center;
+            font-size: 13px;
+            color: #cccccc;
+            cursor: pointer;
+        }
+        
+        .folder:hover {
+            background: #2a2d2e;
+        }
+        
+        .folder-icon {
+            margin-right: 8px;
+            color: #dcb67a;
+        }
+        
+        .file-item {
+            padding: 6px 32px;
+            display: flex;
+            align-items: center;
+            font-size: 13px;
+            color: #cccccc;
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .file-item:hover {
+            background: #2a2d2e;
+        }
+        
+        .file-item.active {
+            background: #094771;
+            color: #ffffff;
+        }
+        
+        .file-icon {
+            margin-right: 8px;
+            width: 16px;
+            height: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Main Editor Area */
+        .editor-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .tab-bar {
+            height: 35px;
+            background: #2d2d30;
+            border-bottom: 1px solid #3e3e42;
+            display: flex;
+            align-items: center;
+        }
+        
+        .tab {
+            height: 35px;
+            padding: 0 16px;
+            display: flex;
+            align-items: center;
+            background: #1e1e1e;
+            border-right: 1px solid #3e3e42;
+            cursor: pointer;
+            font-size: 13px;
+            gap: 8px;
+        }
+        
+        .tab.active {
+            background: #1e1e1e;
+            border-bottom: 2px solid #0078d4;
+        }
+        
+        .tab-close {
+            width: 16px;
+            height: 16px;
+            border-radius: 3px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            color: #969696;
+        }
+        
+        .tab-close:hover {
+            background: #3e3e42;
+        }
+        
+        .editor-content {
+            flex: 1;
+            background: #1e1e1e;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .welcome-content {
+            text-align: center;
+            max-width: 500px;
+        }
+        
+        .welcome-title {
+            font-size: 28px;
+            color: #cccccc;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+        
+        .shortcuts-section {
+            text-align: left;
+            margin-top: 30px;
+        }
+        
+        .shortcut-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #3e3e42;
+            font-size: 14px;
+        }
+        
+        .shortcut-keys {
+            background: #3e3e42;
+            padding: 4px 8px;
+            border-radius: 3px;
+            font-size: 11px;
+            font-family: 'Consolas', 'Courier New', monospace;
+            color: #cccccc;
+        }
+        
+        /* Status Bar */
+        .status-bar {
+            height: 22px;
+            background: #0078d4;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 10px;
+            font-size: 12px;
+            color: #ffffff;
+        }
+        
+        .status-left,
+        .status-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .status-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+        }
+        
+        .status-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2px 4px;
+            border-radius: 2px;
+        }
+        
+        /* VS Code Icons */
+        .vscode-icon {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+        }
     </style>
 </head>
 <body>
 
+<!-- Title Bar -->
+<div class="title-bar">
+    <div class="window-controls">
+        <div class="control-btn close"></div>
+        <div class="control-btn minimize"></div>
+        <div class="control-btn maximize"></div>
+    </div>
+    <div class="title-text">adeetya-u — portfolio</div>
+    <div></div>
+</div>
+
+<!-- Main VS Code Interface -->
 <div class="vscode-container">
-    <!-- Sidebar -->
-    <div class="sidebar">
-        <div class="sidebar-header">📁 PORTFOLIO</div>
+    <!-- Activity Bar -->
+    <div class="activity-bar">
+        <div class="activity-item active" title="Explorer">
+            <svg viewBox="0 0 24 24">
+                <path d="M10 4H4c-1.11 0-2 .89-2 2v12c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2h-8l-2-2z"/>
+            </svg>
+        </div>
+        <div class="activity-item" title="Search">
+            <svg viewBox="0 0 24 24">
+                <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+            </svg>
+        </div>
+        <div class="activity-item" title="Source Control">
+            <svg viewBox="0 0 24 24">
+                <path d="M12,3C7.58,3 4,6.58 4,11C4,15.42 7.58,19 12,19C16.42,19 20,15.42 20,11C20,6.58 16.42,3 12,3M8,9.5A1.5,1.5 0 0,1 9.5,8A1.5,1.5 0 0,1 11,9.5A1.5,1.5 0 0,1 9.5,11A1.5,1.5 0 0,1 8,9.5M13,14.5A1.5,1.5 0 0,1 14.5,13A1.5,1.5 0 0,1 16,14.5A1.5,1.5 0 0,1 14.5,16A1.5,1.5 0 0,1 13,14.5Z"/>
+            </svg>
+        </div>
+        <div class="activity-item" title="Run and Debug">
+            <svg viewBox="0 0 24 24">
+                <path d="M8,5.14V19.14L19,12.14L8,5.14Z"/>
+            </svg>
+        </div>
+        <div class="activity-item" title="Extensions">
+            <svg viewBox="0 0 24 24">
+                <path d="M20.5,11H19V7C19,5.89 18.1,5 17,5H13V3.5A2.5,2.5 0 0,0 10.5,1A2.5,2.5 0 0,0 8,3.5V5H4C2.89,5 2,5.89 2,7V10.8H3.5C5,10.8 6.2,12 6.2,13.5C6.2,15 5,16.2 3.5,16.2H2V20C2,21.11 2.89,22 4,22H7.8V20.5C7.8,19 9,17.8 10.5,17.8C12,17.8 13.2,19 13.2,20.5V22H17C18.11,22 19,21.11 19,20V16H20.5A2.5,2.5 0 0,0 23,13.5A2.5,2.5 0 0,0 20.5,11Z"/>
+            </svg>
+        </div>
+    </div>
+
+    <!-- Side Panel -->
+    <div class="side-panel">
+        <div class="panel-header">
+            EXPLORER
+        </div>
         <div class="file-explorer">
+            <div class="folder">
+                <span class="folder-icon">📁</span>
+                <span>PORTFOLIO</span>
+            </div>
             <div class="file-item active">
-                <span class="file-icon">🏠</span>
+                <div class="file-icon">📄</div>
                 <span>Welcome.md</span>
             </div>
             <div class="file-item">
-                <span class="file-icon">👨‍💻</span>
+                <div class="file-icon">🟦</div>
                 <span>About.ts</span>
             </div>
             <div class="file-item">
-                <span class="file-icon">🛠️</span>
+                <div class="file-icon">🟦</div>
                 <span>Skills.ts</span>
             </div>
             <div class="file-item">
-                <span class="file-icon">🚀</span>
+                <div class="file-icon">🟦</div>
                 <span>Projects.ts</span>
             </div>
             <div class="file-item">
-                <span class="file-icon">📊</span>
+                <div class="file-icon">🟨</div>
                 <span>Analytics.json</span>
             </div>
             <div class="file-item">
-                <span class="file-icon">🌐</span>
+                <div class="file-icon">🟨</div>
                 <span>Contact.json</span>
+            </div>
+            <div class="file-item">
+                <div class="file-icon">🟩</div>
+                <span>package.json</span>
+            </div>
+            <div class="file-item">
+                <div class="file-icon">📄</div>
+                <span>README.md</span>
             </div>
         </div>
     </div>
 
-    <!-- Main Content -->
-    <div class="main-content">
-        <div class="welcome-screen">
-            <h1 class="welcome-title">Welcome to My Portfolio!</h1>
-            
-            <div class="shortcuts">
-                <div class="shortcut-item">
-                    <span>To view pages</span>
-                    <span class="shortcut-keys">CTRL + P</span>
-                </div>
-                <div class="shortcut-item">
-                    <span>To change theme</span>
-                    <span class="shortcut-keys">CTRL + T</span>
-                </div>
-                <div class="shortcut-item">
-                    <span>To toggle mode</span>
-                    <span class="shortcut-keys">CTRL + M</span>
+    <!-- Editor Area -->
+    <div class="editor-area">
+        <div class="tab-bar">
+            <div class="tab active">
+                <span>📄</span>
+                <span>Welcome.md</span>
+                <div class="tab-close">×</div>
+            </div>
+        </div>
+        
+        <div class="editor-content">
+            <div class="welcome-content">
+                <h1 class="welcome-title">Welcome to My Portfolio!</h1>
+                
+                <div class="shortcuts-section">
+                    <div class="shortcut-item">
+                        <span>Show all pages</span>
+                        <span class="shortcut-keys">CTRL + P</span>
+                    </div>
+                    <div class="shortcut-item">
+                        <span>Change language</span>
+                        <span class="shortcut-keys">CTRL + L</span>
+                    </div>
+                    <div class="shortcut-item">
+                        <span>Toggle mode</span>
+                        <span class="shortcut-keys">CTRL + M</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -81,13 +423,33 @@
 
 <!-- Status Bar -->
 <div class="status-bar">
-    <div>
-        <span>👤 @adeetya-u</span>
-        <span style="margin-left: 20px;">🔥 85+ followers</span>
-        <span style="margin-left: 20px;">⭐ 120+ stars</span>
+    <div class="status-left">
+        <div class="status-item">
+            <span>🌿</span>
+            <span>main</span>
+        </div>
+        <div class="status-item">
+            <span>❌</span>
+            <span>0</span>
+        </div>
+        <div class="status-item">
+            <span>⚠️</span>
+            <span>0</span>
+        </div>
     </div>
-    <div>
-        <span>⏰ coding: 2,397 hrs 23 mins</span>
+    <div class="status-right">
+        <div class="status-item">
+            <span>👤</span>
+            <span>@adeetya-u</span>
+        </div>
+        <div class="status-item">
+            <span>⭐</span>
+            <span>120+ stars</span>
+        </div>
+        <div class="status-item">
+            <span>⏰</span>
+            <span>2,397 hrs 23 mins</span>
+        </div>
     </div>
 </div>
 
