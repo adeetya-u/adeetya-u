@@ -14,39 +14,7 @@
 
 <div align="center">
   <img src="https://github-readme-stats.vercel.app/api?username=adeetya-u&show_icons=true&theme=github&hide_border=true&show_owner=true&count_private=true&rank_icon=github" alt="GitHub Stats" />
-  <div style="background: #f6f8fa; border-radius: 8px; padding: 20px; border: 1px solid #e1e4e8;">
-    <h3 style="margin: 0 0 15px 0; color: #24292e; font-size: 16px; text-align: center;">Most Used Languages</h3>
-    <table style="width: 100%; border-collapse: collapse;">
-      <thead>
-        <tr style="border-bottom: 2px solid #e1e4e8;">
-          <th style="padding: 8px; text-align: center; color: #586069; font-weight: 600; font-size: 14px;">Language</th>
-          <th style="padding: 8px; text-align: center; color: #586069; font-weight: 600; font-size: 14px;">Percentage</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr style="border-bottom: 1px solid #f1f3f4;">
-          <td style="padding: 10px 8px; text-align: center; color: #24292e; font-weight: 500;">Python</td>
-          <td style="padding: 10px 8px; text-align: center; color: #28a745; font-weight: 600;">28.47%</td>
-        </tr>
-        <tr style="border-bottom: 1px solid #f1f3f4;">
-          <td style="padding: 10px 8px; text-align: center; color: #24292e; font-weight: 500;">JavaScript</td>
-          <td style="padding: 10px 8px; text-align: center; color: #f1c40f; font-weight: 600;">24.83%</td>
-        </tr>
-        <tr style="border-bottom: 1px solid #f1f3f4;">
-          <td style="padding: 10px 8px; text-align: center; color: #24292e; font-weight: 500;">SQL</td>
-          <td style="padding: 10px 8px; text-align: center; color: #e74c3c; font-weight: 600;">19.56%</td>
-        </tr>
-        <tr style="border-bottom: 1px solid #f1f3f4;">
-          <td style="padding: 10px 8px; text-align: center; color: #24292e; font-weight: 500;">C++</td>
-          <td style="padding: 10px 8px; text-align: center; color: #9b59b6; font-weight: 600;">13.92%</td>
-        </tr>
-        <tr>
-          <td style="padding: 10px 8px; text-align: center; color: #24292e; font-weight: 500;">Java</td>
-          <td style="padding: 10px 8px; text-align: center; color: #e67e22; font-weight: 600;">13.22%</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=adeetya-u&layout=compact&theme=github&hide_border=true&langs_count=5&count_private=true&exclude_repo=adeetya-u,adeetya-u.github.io&custom_title=Most%20Used%20Languages&langs_count=5&layout=compact&card_width=300" alt="Top Languages" />
 </div>
 
 ---
@@ -87,9 +55,9 @@
 
 <div align="center">
 
-<table style="border-collapse: collapse;">
+<table style="border-collapse: collapse; background: transparent;">
   <tr>
-    <td width="50%" style="border: none; padding: 5px;">
+    <td width="50%" style="border: none; padding: 5px; background: transparent;">
       <a href="https://github.com/adeetya-u/AGM-SDS" target="_blank">
         <picture>
           <source media="(prefers-color-scheme: light)" srcset="project-cards/AGM-SDS-light-theme.svg">
@@ -97,7 +65,7 @@
         </picture>
       </a>
     </td>
-    <td width="50%" style="border: none; padding: 5px;">
+    <td width="50%" style="border: none; padding: 5px; background: transparent;">
       <a href="https://github.com/CS222-UIUC/team-69-project" target="_blank">
         <picture>
           <source media="(prefers-color-scheme: light)" srcset="project-cards/team-69-project-light-theme.svg">
@@ -107,7 +75,7 @@
     </td>
   </tr>
   <tr>
-    <td width="50%" style="border: none; padding: 5px;">
+    <td width="50%" style="border: none; padding: 5px; background: transparent;">
       <a href="https://github.com/adeetya-u/ReverseDCF" target="_blank">
         <picture>
           <source media="(prefers-color-scheme: light)" srcset="project-cards/ReverseDCF-light-theme.svg">
@@ -115,7 +83,7 @@
         </picture>
       </a>
     </td>
-    <td width="50%" style="border: none; padding: 5px;">
+    <td width="50%" style="border: none; padding: 5px; background: transparent;">
       <a href="https://github.com/kmhmubin/Face-Recognition-Attendance-System" target="_blank">
         <picture>
           <source media="(prefers-color-scheme: light)" srcset="project-cards/Face-Recognition-Attendance-System-light-theme.svg">
