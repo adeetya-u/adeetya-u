@@ -4,18 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>adeetya-u - Visual Studio Code</title>
+    <link rel="icon" type="image/png" href="https://github.com/adeetya-u/adeetya-u.github.io/blob/main/logo.png">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-touch-callout: none;
+            -webkit-tap-highlight-color: transparent;
         }
         
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: #1e1e1e;
             color: #cccccc;
-            overflow: hidden;
+            height: 100vh;
         }
         
 
@@ -55,8 +62,10 @@
         /* Main Container */
         .vscode-container {
             display: flex;
-            height: calc(100vh - 52px);
+            height: calc(100vh - 30px);
             position: relative;
+            overflow: hidden;
+            min-width: 0;
         }
         
         /* Activity Bar */
@@ -99,7 +108,8 @@
         
         /* Side Panel */
         .side-panel {
-            width: 300px;
+            width: 250px;
+            min-width: 200px;
             background: #252526;
             border-right: 1px solid #3e3e42;
             display: flex;
@@ -187,6 +197,8 @@
             flex: 1;
             display: flex;
             flex-direction: column;
+            min-height: 0;
+            overflow: hidden;
         }
         
         .tab-bar {
@@ -237,19 +249,47 @@
             font-family: 'Consolas', 'Courier New', monospace;
             font-size: 14px;
             line-height: 1.6;
+            min-height: 0;
+            height: 100%;
         }
         
         .editor-content.welcome {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            justify-content: flex-start;
+            padding: 0;
+            overflow-y: auto;
+            height: 100%;
+        }
+        
+        /* Responsive design for Welcome content */
+        @media (max-width: 800px) {
+            .welcome-content {
+                max-width: 95% !important;
+                padding: 15px !important;
+            }
+        }
+        
+        /* Center all welcome content boxes */
+        .welcome-content > div {
+            margin-left: auto;
+            margin-right: auto;
         }
         
         .welcome-content {
             text-align: center;
-            max-width: 500px;
+            max-width: 1000px; /* Reasonable max width for content */
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            box-sizing: border-box;
+            padding-bottom: 40px; /* Extra padding at bottom for better scrolling */
+            margin: 0 auto; /* Center the welcome content horizontally */
         }
         
         .welcome-title {
@@ -262,6 +302,9 @@
         .shortcuts-section {
             text-align: left;
             margin-top: 30px;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
         .shortcut-item {
@@ -310,7 +353,7 @@
         .number { color: #b5cea8; }
         .function { color: #dcdcaa; }
         
-        /* Status Bar */
+        /* Status Bar - Fixed at bottom */
         .status-bar {
             height: 22px;
             background: #0078d4;
@@ -320,6 +363,11 @@
             padding: 0 10px;
             font-size: 12px;
             color: #ffffff;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 20;
         }
         
         .status-left,
@@ -351,11 +399,13 @@
         
         /* Chat Pane (Cursor AI Style) */
         .chat-pane {
-            width: 350px;
+            width: 300px;
+            min-width: 250px;
             background: #252526;
             border-left: 1px solid #3e3e42;
             display: flex;
             flex-direction: column;
+            height: calc(100vh - 30px - 22px); /* Account for title bar and status bar */
         }
         
         .chat-header {
@@ -402,6 +452,8 @@
         .chat-input-container {
             padding: 15px;
             border-top: 1px solid #3e3e42;
+            flex-shrink: 0; /* Ensure input container doesn't shrink */
+            margin-bottom: 0; /* Remove any bottom margin to prevent overlap with status bar */
         }
         
         .chat-input-wrapper {
@@ -530,59 +582,224 @@
             fill: currentColor;
         }
 
-        /* Terminal Pane */
+        /* Terminal Pane - positioned between explorer and chat pane */
         .terminal-pane {
-            height: 200px;
+            height: 150px;
+            min-height: 17px;
+            max-height: calc(40vh);
             background: #1e1e1e;
             border-top: 1px solid #3e3e42;
+            border-left: 1px solid #3e3e42;
+            border-right: 1px solid #3e3e42;
             display: flex;
             flex-direction: column;
+            position: fixed;
+            bottom: 22px; /* Above status bar */
+            left: 298px; /* After activity bar (48px) + side panel (250px) */
+            right: 300px; /* Before chat pane (300px) */
+            transition: height 0.2s ease;
+            flex-shrink: 0;
+            z-index: 10;
+        }
+
+        .terminal-pane.collapsed {
+            height: 17px !important;
         }
         
-        /* Editor Container to hold both editor and terminal */
+
+
+        .terminal-pane.collapsed .terminal-content {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+            height: 0 !important;
+            overflow: hidden !important;
+            max-height: 0 !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+        
+        .terminal-pane.collapsed .terminal-content * {
+            display: none !important;
+            visibility: hidden !important;
+        }
+        
+        .terminal-pane.collapsed .terminal-line {
+            display: none !important;
+            height: 0 !important;
+            overflow: hidden !important;
+        }
+        
+        .terminal-pane.collapsed .terminal-resize-handle {
+            display: none !important;
+            visibility: hidden !important;
+        }
+
+        /* Resize Handle */
+        .terminal-resize-handle {
+            position: absolute;
+            top: -3px;
+            left: 0;
+            right: 0;
+            height: 6px;
+            cursor: ns-resize;
+            background: transparent;
+            z-index: 10;
+        }
+
+        .terminal-resize-handle:hover {
+            background: #0078d4;
+        }
+
+        .terminal-resize-handle::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 2px;
+            background: #3e3e42;
+            border-radius: 1px;
+        }
+
+        .terminal-resize-handle:hover::after {
+            background: #0078d4;
+        }
+        
+        /* Editor Container - ensure proper height calculation for scrolling */
         .editor-container {
             flex: 1;
             display: flex;
             flex-direction: column;
+            min-width: 0;
+            overflow: hidden;
+            position: relative;
+            height: calc(100vh - 30px - 22px); /* Full viewport minus title bar and status bar */
+            transition: height 0.2s ease;
+        }
+        
+        /* Editor container adjusts when terminal is expanded */
+        .editor-container.terminal-visible {
+            height: calc(100vh - 30px - 22px - var(--terminal-height, 150px));
+        }
+        
+        /* Editor Area - independent scroll pane with proper height */
+        .editor-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+            overflow: hidden;
+            height: 100%;
         }
         
         .terminal-header {
-            height: 35px;
+            height: 17px;
             background: #2d2d30;
             display: flex;
             align-items: center;
-            padding: 0 15px;
-            font-size: 13px;
+            justify-content: space-between;
+            padding: 0 10px;
+            font-size: 11px;
             color: #cccccc;
             font-weight: 600;
             border-bottom: 1px solid #3e3e42;
+            cursor: default;
+        }
+
+        .terminal-title {
+            display: flex;
+            align-items: center;
+        }
+
+        .terminal-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .terminal-collapse-btn {
+            width: 14px;
+            height: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border-radius: 2px;
+            transition: background-color 0.2s;
+        }
+
+        .terminal-collapse-btn:hover {
+            background: #3e3e42;
+        }
+
+        .terminal-collapse-btn svg {
+            transition: transform 0.2s;
+            width: 10px;
+            height: 10px;
+        }
+
+        .terminal-pane.collapsed .terminal-collapse-btn svg {
+            transform: rotate(180deg);
         }
         
         .terminal-content {
             flex: 1;
-            padding: 10px;
-            font-family: 'Consolas', 'Courier New', monospace;
-            font-size: 12px;
-            line-height: 1.1;
+            padding: 8px 12px;
+            font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', 'Consolas', 'Courier New', monospace;
+            font-size: 13px;
+            line-height: 1.4;
             color: #cccccc;
             overflow-y: auto;
+            background: #1e1e1e;
+            scrollbar-width: thin;
+            scrollbar-color: #3e3e42 #1e1e1e;
+        }
+        
+        /* Webkit scrollbar styling */
+        .terminal-content::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        .terminal-content::-webkit-scrollbar-track {
+            background: #1e1e1e;
+        }
+        
+        .terminal-content::-webkit-scrollbar-thumb {
+            background: #3e3e42;
+            border-radius: 4px;
+        }
+        
+        .terminal-content::-webkit-scrollbar-thumb:hover {
+            background: #4e4e52;
         }
         
         .terminal-line {
-            margin-bottom: 0px;
-            white-space: pre-wrap;
+            margin-bottom: 2px;
+            white-space: pre;
+            display: flex;
+            align-items: flex-start;
+            min-height: 18px;
         }
         
         .terminal-prompt {
             color: #4ec9b0;
+            font-weight: 500;
+            margin-right: 8px;
+            flex-shrink: 0;
         }
         
         .terminal-command {
             color: #dcdcaa;
+            font-weight: 400;
         }
         
         .terminal-output {
             color: #cccccc;
+            font-weight: 400;
+            margin-left: 0;
+            padding-left: 0;
         }
         
         .terminal-error {
@@ -591,6 +808,59 @@
         
         .terminal-success {
             color: #4ec9b0;
+        }
+        
+        .terminal-input {
+            outline: none;
+            border: none;
+            background: transparent;
+            color: #dcdcaa;
+            font-family: inherit;
+            font-size: inherit;
+            font-weight: 400;
+            min-width: 1px;
+            flex: 1;
+            position: relative;
+        }
+        
+        .terminal-input:focus {
+            outline: none;
+        }
+        
+
+        
+        .terminal-line:last-child {
+            margin-bottom: 0;
+        }
+        
+        /* Ensure proper cursor positioning */
+        .terminal-input[contenteditable="true"] {
+            caret-color: #cccccc;
+        }
+        
+        /* Prevent text selection on prompt */
+        .terminal-prompt {
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+        }
+        
+        /* Ensure output text doesn't wrap awkwardly */
+        .terminal-output {
+            word-wrap: break-word;
+            white-space: pre-wrap;
+        }
+        
+        /* Project card hover effects */
+        .welcome-content a:hover div {
+            border-color: #0078d4 !important;
+            box-shadow: 0 0 0 1px #0078d4;
+            transform: translateY(-1px);
+        }
+        
+        .welcome-content a:active div {
+            transform: translateY(0);
         }
     </style>
 </head>
@@ -729,23 +999,23 @@
         
         <div class="editor-content welcome" id="editor-content">
             <!-- Welcome Content -->
-            <div class="welcome-content" id="welcome-content" style="display: flex; flex-direction: column; align-items: center; max-width: 100%; padding: 0 20px;">
+            <div class="welcome-content" id="welcome-content">
                 <!-- Header Section - Centered -->
                 <div style="text-align: center; margin-bottom: 30px; width: 100%;">
                     <h1 class="welcome-title">Adeetya Upadhyay</h1>
-                    <p style="color: #9cdcfe; font-size: 16px; margin-bottom: 20px;">Full Stack Developer & ML Engineer | UIUC Student</p>
+                    <p style="color: #9cdcfe; font-size: 16px; margin-bottom: 20px;">Full Stack Developer & ML Engineer | Illinois '27 | CS, Advertising, Econometrics</p>
                 </div>
 
                 <!-- Two Column Layout -->
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; width: 100%; max-width: 1200px;">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; width: 100%; max-width: 900px; margin: 0 auto; align-items: center; justify-content: center;">
                     
                     <!-- Left Column: GitHub Stats & Tech Stack -->
-                    <div style="display: flex; flex-direction: column; align-items: center;">
+                    <div style="display: flex; flex-direction: column; align-items: center; width: 100%;">
                         <!-- Dynamic GitHub Stats -->
                         <div style="display: flex; flex-direction: column; align-items: center; gap: 15px; margin-bottom: 20px; width: 100%;">
                             <!-- GitHub Stats Card with GitHub Logo -->
                             <div style="background: #252526; border-radius: 6px; padding: 10px; border: 1px solid #3e3e42; width: 100%; display: flex; justify-content: center;">
-                                <img src="https://github-readme-stats.vercel.app/api?username=adeetya-u&show_icons=true&theme=dark&bg_color=252526&title_color=4ec9b0&text_color=cccccc&icon_color=0078d4&border_color=3e3e42&hide_border=true&show_owner=true&rank_icon=github" alt="Adeetya's GitHub Stats" style="max-width: 100%; height: auto;">
+                                <img src="https://github-readme-stats.vercel.app/api?username=adeetya-u&show_icons=true&theme=dark&bg_color=252526&title_color=4ec9b0&text_color=cccccc&icon_color=0078d4&border_color=3e3e42&hide_border=true&show_owner=true&rank_icon=github&count_private=true&cache_seconds=0" alt="Adeetya's GitHub Stats" style="max-width: 100%; height: auto;">
                             </div>
                             
                             <!-- Top Languages Card -->
@@ -844,7 +1114,7 @@
                     </div>
 
                     <!-- Right Column: Current Focus & Featured Projects -->
-                    <div style="display: flex; flex-direction: column; align-items: center;">
+                    <div style="display: flex; flex-direction: column; align-items: center; width: 100%;">
                         <!-- Current Focus -->
                         <div style="background: #2d2d30; border-radius: 8px; padding: 20px; margin-bottom: 20px; border-left: 3px solid #0078d4; width: 100%;">
                             <h3 style="color: #0078d4; margin-bottom: 12px; font-size: 14px; text-align: center; display: flex; align-items: center; justify-content: center; gap: 6px;">
@@ -894,31 +1164,39 @@
                             <!-- Repository Cards Grid -->
                             <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 15px;">
                                 <!-- TutorSwap - UIUC Project -->
-                                <div style="background: #252526; border-radius: 6px; padding: 8px; border: 1px solid #3e3e42; display: flex; justify-content: center;">
-                                    <img src="https://github-readme-stats.vercel.app/api/pin/?username=CS222-UIUC&repo=team-69-project&theme=dark&bg_color=252526&title_color=4ec9b0&text_color=cccccc&icon_color=0078d4&border_color=3e3e42&hide_border=true" alt="TutorSwap Project" style="max-width: 100%; height: auto;">
-                                </div>
+                                <a href="https://github.com/CS222-UIUC/team-69-project" target="_blank" style="text-decoration: none; display: block;">
+                                    <div style="background: #252526; border-radius: 6px; padding: 8px; border: 1px solid #3e3e42; display: flex; justify-content: center; transition: all 0.2s ease; cursor: pointer;">
+                                        <img src="https://github-readme-stats.vercel.app/api/pin/?username=CS222-UIUC&repo=team-69-project&theme=dark&bg_color=252526&title_color=4ec9b0&text_color=cccccc&icon_color=0078d4&border_color=3e3e42&hide_border=true" alt="TutorSwap Project" style="max-width: 100%; height: auto;">
+                                    </div>
+                                </a>
                                 
                                 <!-- Personal Portfolio -->
-                                <div style="background: #252526; border-radius: 6px; padding: 8px; border: 1px solid #3e3e42; display: flex; justify-content: center;">
-                                    <img src="https://github-readme-stats.vercel.app/api/pin/?username=adeetya-u&repo=adeetya-u&theme=dark&bg_color=252526&title_color=4ec9b0&text_color=cccccc&icon_color=0078d4&border_color=3e3e42&hide_border=true" alt="Portfolio Repo" style="max-width: 100%; height: auto;">
-                                </div>
+                                <a href="https://github.com/adeetya-u/adeetya-u" target="_blank" style="text-decoration: none; display: block;">
+                                    <div style="background: #252526; border-radius: 6px; padding: 8px; border: 1px solid #3e3e42; display: flex; justify-content: center; transition: all 0.2s ease; cursor: pointer;">
+                                        <img src="https://github-readme-stats.vercel.app/api/pin/?username=adeetya-u&repo=adeetya-u&theme=dark&bg_color=252526&title_color=4ec9b0&text_color=cccccc&icon_color=0078d4&border_color=3e3e42&hide_border=true" alt="Portfolio Repo" style="max-width: 100%; height: auto;">
+                                    </div>
+                                </a>
                                 
                                 <!-- ReverseDCF -->
-                                <div style="background: #252526; border-radius: 6px; padding: 8px; border: 1px solid #3e3e42; display: flex; justify-content: center;">
-                                    <img src="https://github-readme-stats.vercel.app/api/pin/?username=adeetya-u&repo=ReverseDCF&theme=dark&bg_color=252526&title_color=4ec9b0&text_color=cccccc&icon_color=0078d4&border_color=3e3e42&hide_border=true" alt="ReverseDCF Project" style="max-width: 100%; height: auto;">
-                                </div>
+                                <a href="https://github.com/adeetya-u/ReverseDCF" target="_blank" style="text-decoration: none; display: block;">
+                                    <div style="background: #252526; border-radius: 6px; padding: 8px; border: 1px solid #3e3e42; display: flex; justify-content: center; transition: all 0.2s ease; cursor: pointer;">
+                                        <img src="https://github-readme-stats.vercel.app/api/pin/?username=adeetya-u&repo=ReverseDCF&theme=dark&bg_color=252526&title_color=4ec9b0&text_color=cccccc&icon_color=0078d4&border_color=3e3e42&hide_border=true&cache_seconds=0" alt="ReverseDCF Project" style="max-width: 100%; height: auto;">
+                                    </div>
+                                </a>
                                 
                                 <!-- GitHub Pages Portfolio -->
-                                <div style="background: #252526; border-radius: 6px; padding: 8px; border: 1px solid #3e3e42; display: flex; justify-content: center;">
-                                    <img src="https://github-readme-stats.vercel.app/api/pin/?username=adeetya-u&repo=adeetya-u.github.io&theme=dark&bg_color=252526&title_color=4ec9b0&text_color=cccccc&icon_color=0078d4&border_color=3e3e42&hide_border=true" alt="GitHub Pages Portfolio" style="max-width: 100%; height: auto;">
-                                </div>
+                                <a href="https://github.com/adeetya-u/adeetya-u.github.io" target="_blank" style="text-decoration: none; display: block;">
+                                    <div style="background: #252526; border-radius: 6px; padding: 8px; border: 1px solid #3e3e42; display: flex; justify-content: center; transition: all 0.2s ease; cursor: pointer;">
+                                        <img src="https://github-readme-stats.vercel.app/api/pin/?username=adeetya-u&repo=adeetya-u.github.io&theme=dark&bg_color=252526&title_color=4ec9b0&text_color=cccccc&icon_color=0078d4&border_color=3e3e42&hide_border=true" alt="GitHub Pages Portfolio" style="max-width: 100%; height: auto;">
+                                    </div>
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Footer Section - Centered -->
-                <div style="text-align: center; margin-top: 30px; width: 100%;">
+                <div style="text-align: center; margin-top: 30px; width: 100%; max-width: 600px; margin: 30px auto 0 auto;">
                     <!-- Quick Actions -->
                     <div style="display: flex; gap: 10px; justify-content: center; margin-bottom: 20px; flex-wrap: wrap;">
                         <a href="mailto:adeetya.upadhyay@gmail.com" style="background: #0078d4; color: white; padding: 8px 16px; border-radius: 4px; text-decoration: none; font-size: 12px; display: flex; align-items: center; gap: 6px;">
@@ -1028,7 +1306,7 @@
 
             <!-- Projects.ts Content -->
             <div class="code-content" id="projects-content">
-<div class="line-numbers">1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40</div>
+<div class="line-numbers">1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40<br>41<br>42<br>43<br>44<br>45<br>46<br>47<br>48<br>49<br>50<br>51<br>52<br>53<br>54<br>55<br>56<br>57<br>58<br>59<br>60<br>61<br>62<br>63<br>64<br>65<br>66<br>67<br>68<br>69<br>70<br>71<br>72<br>73<br>74<br>75</div>
 <div class="code-lines">
 <div class="code-line"><span class="comment">// Projects.ts - Portfolio Projects</span></div>
 <div class="code-line"></div>
@@ -1041,10 +1319,40 @@
 <div class="code-line"></div>
 <div class="code-line"><span class="keyword">const</span> <span class="property">projects</span>: <span class="function">Project</span>[] = [</div>
 <div class="code-line">  {</div>
+<div class="code-line">    <span class="property">name</span>: <span class="string">"AGM SDS Platform"</span>,</div>
+<div class="code-line">    <span class="property">description</span>: <span class="string">"Seafarer assignment platform used by 1K+ crew/month, cutting vetting time from 58m to 7m (88%) with Gale-Shapley matching"</span>,</div>
+<div class="code-line">    <span class="property">techStack</span>: [<span class="string">"React"</span>, <span class="string">"Node.js"</span>, <span class="string">"SQLite"</span>, <span class="string">"Gale-Shapley Algorithm"</span>],</div>
+<div class="code-line">    <span class="property">status</span>: <span class="string">"active"</span></div>
+<div class="code-line">  },</div>
+<div class="code-line">  {</div>
 <div class="code-line">    <span class="property">name</span>: <span class="string">"TutorSwap Platform"</span>,</div>
 <div class="code-line">    <span class="property">description</span>: <span class="string">"Full-stack peer tutoring platform with AI-powered matching"</span>,</div>
 <div class="code-line">    <span class="property">techStack</span>: [<span class="string">"React"</span>, <span class="string">"Flask"</span>, <span class="string">"PostgreSQL"</span>, <span class="string">"Socket.IO"</span>],</div>
 <div class="code-line">    <span class="property">status</span>: <span class="string">"in-development"</span></div>
+<div class="code-line">  },</div>
+<div class="code-line">  {</div>
+<div class="code-line">    <span class="property">name</span>: <span class="string">"Forget-Me-Not IoT System"</span>,</div>
+<div class="code-line">    <span class="property">description</span>: <span class="string">"Automated plant watering system with sensors and LED controls. Patent pending from USPTO"</span>,</div>
+<div class="code-line">    <span class="property">techStack</span>: [<span class="string">"Arduino"</span>, <span class="string">"CAD"</span>, <span class="string">"IoT Sensors"</span>, <span class="string">"Hardware Engineering"</span>],</div>
+<div class="code-line">    <span class="property">status</span>: <span class="string">"patent-pending"</span></div>
+<div class="code-line">  },</div>
+<div class="code-line">  {</div>
+<div class="code-line">    <span class="property">name</span>: <span class="string">"Satellite Maneuver Optimization"</span>,</div>
+<div class="code-line">    <span class="property">description</span>: <span class="string">"Optimized plane change maneuvers for Geosynchronous satellites using MIT, ASU, and Cornell research data"</span>,</div>
+<div class="code-line">    <span class="property">techStack</span>: [<span class="string">"R"</span>, <span class="string">"Orbital Mechanics"</span>, <span class="string">"Mathematical Modeling"</span>, <span class="string">"IB Math EE"</span>],</div>
+<div class="code-line">    <span class="property">status</span>: <span class="string">"completed"</span></div>
+<div class="code-line">  },</div>
+<div class="code-line">  {</div>
+<div class="code-line">    <span class="property">name</span>: <span class="string">"Coastal Wall Design Analysis"</span>,</div>
+<div class="code-line">    <span class="property">description</span>: <span class="string">"Numerical analysis of coastal wall design for Jakarta's sinking city problem using wave overtopping models"</span>,</div>
+<div class="code-line">    <span class="property">techStack</span>: [<span class="string">"Python"</span>, <span class="string">"Parabolic Shape Model"</span>, <span class="string">"Wave Analysis"</span>, <span class="string">"IB Science Fair"</span>],</div>
+<div class="code-line">    <span class="property">status</span>: <span class="string">"completed"</span></div>
+<div class="code-line">  },</div>
+<div class="code-line">  {</div>
+<div class="code-line">    <span class="property">name</span>: <span class="string">"Digital Information Disorder Impact"</span>,</div>
+<div class="code-line">    <span class="property">description</span>: <span class="string">"Explored impact of disinformation on brand equity at local, national, and global scales"</span>,</div>
+<div class="code-line">    <span class="property">techStack</span>: [<span class="string">"Marketing Analytics"</span>, <span class="string">"Data Analysis"</span>, <span class="string">"Brand Equity Research"</span>],</div>
+<div class="code-line">    <span class="property">status</span>: <span class="string">"completed"</span></div>
 <div class="code-line">  },</div>
 <div class="code-line">  {</div>
 <div class="code-line">    <span class="property">name</span>: <span class="string">"AI Grant Matcher"</span>,</div>
@@ -1147,17 +1455,52 @@
         </div>
 
         <!-- Terminal Pane -->
-        <div class="terminal-pane">
+        <div class="terminal-pane" id="terminal-pane">
+            <!-- Resize Handle -->
+            <div class="terminal-resize-handle" id="terminal-resize-handle"></div>
+            
             <div class="terminal-header">
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="margin-right: 8px;">
-                    <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm2-1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H2z"/>
-                    <path d="M6.146 4.146a.5.5 0 0 1 .708 0L8.207 5.5 6.854 6.854a.5.5 0 1 1-.708-.708L7.293 5H2.5a.5.5 0 0 1 0-1h4.793L6.146 2.854a.5.5 0 0 1 0-.708z"/>
-                    <path d="M2 8.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"/>
-                </svg>
-                TERMINAL
+                <div class="terminal-title">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 6px;">
+                        <path d="M20,19V7H4V19H20M20,3A2,2 0 0,1 22,5V19A2,2 0 0,1 20,21H4A2,2 0 0,1 2,19V5C2,3.89 2.9,3 4,3H20M13,17V15H18V17H13M9.58,14L5.57,10H8.4L11.7,13.3C12.09,13.69 12.09,14.32 11.7,14.71L8.42,18H5.59L9.58,14Z"/>
+                    </svg>
+                    TERMINAL
+                </div>
+                
+                <div class="terminal-controls">
+                    <div class="terminal-collapse-btn" id="terminal-collapse-btn" title="Toggle Terminal">
+                        <svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor">
+                            <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+                        </svg>
+                    </div>
+                </div>
             </div>
             
             <div class="terminal-content">
+                <div class="terminal-line">
+                    <span class="terminal-prompt">adeetya@portfolio:~$</span> <span class="terminal-command">whoami</span>
+                </div>
+                <div class="terminal-line terminal-output">
+                    adeetya
+                </div>
+                <div class="terminal-line">
+                    <span class="terminal-prompt">adeetya@portfolio:~$</span> <span class="terminal-command">pwd</span>
+                </div>
+                <div class="terminal-line terminal-output">
+                    /home/adeetya/portfolio
+                </div>
+                <div class="terminal-line">
+                    <span class="terminal-prompt">adeetya@portfolio:~$</span> <span class="terminal-command">ls -la</span>
+                </div>
+                <div class="terminal-line terminal-output">
+                    total 24
+                    drwxr-xr-x  4 adeetya adeetya 4096 Jan 15 10:30 .
+                    drwxr-xr-x  3 adeetya adeetya 4096 Jan 15 10:30 ..
+                    -rw-r--r--  1 adeetya adeetya  189 Jan 15 10:30 index.html
+                    -rw-r--r--  1 adeetya adeetya  856 Jan 15 10:30 README.md
+                    drwxr-xr-x  2 adeetya adeetya 4096 Jan 15 10:30 src
+                    drwxr-xr-x  2 adeetya adeetya 4096 Jan 15 10:30 assets
+                </div>
                 <div class="terminal-line">
                     <span class="terminal-prompt">adeetya@portfolio:~$</span> <span class="terminal-command">git status</span>
                 </div>
@@ -1222,6 +1565,22 @@
                 </div>
                 <div class="terminal-line terminal-success">
                     ✓ main -> main
+                </div>
+                <div class="terminal-line">
+                    <span class="terminal-prompt">adeetya@portfolio:~$</span> <span class="terminal-command">help</span>
+                </div>
+                <div class="terminal-line terminal-output">
+                    Available commands:
+                    • help - Show this help message
+                    • about - Show developer information
+                    • skills - Display technical skills
+                    • projects - List portfolio projects
+                    • contact - Show contact information
+                    • github - Open GitHub profile
+                    • linkedin - Open LinkedIn profile
+                    • email - Send email
+                    • clear - Clear terminal
+                    • ls, pwd, whoami - Standard Unix commands
                 </div>
                 <div class="terminal-line">
                     <span class="terminal-prompt">adeetya@portfolio:~$</span> <span class="terminal-command">_</span>
@@ -1584,8 +1943,542 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize send button as disabled
     sendButton.disabled = true;
 
+    // Terminal functionality
+    const terminalPane = document.getElementById('terminal-pane');
+    const terminalResizeHandle = document.getElementById('terminal-resize-handle');
+    const terminalCollapseBtn = document.getElementById('terminal-collapse-btn');
+    const terminalContent = document.querySelector('.terminal-content');
+    
+    let isResizing = false;
+    let startY = 0;
+    let startHeight = 0;
+    let isCollapsed = false;
+    let lastHeight = 150; // Store last height before collapse
+    
+    // Terminal command functionality
+    let commandHistory = [];
+    let historyIndex = -1;
+    let currentCommand = '';
+    
+    // Available commands
+    const commands = {
+        'help': () => {
+            return `Available commands:
+• help - Show this help message
+• about - Show developer information
+• skills - Display technical skills
+• projects - List portfolio projects
+• contact - Show contact information
+• github - Open GitHub profile
+• linkedin - Open LinkedIn profile
+• email - Send email
+• clear - Clear terminal
+• ls, pwd, whoami - Standard Unix commands`;
+        },
+        'about': () => {
+            return `Adeetya Upadhyay
+Full Stack Developer & ML Engineer
+Location: Champaign, IL
+Education: UIUC (Computer Science, Advertising & Econometrics)
+Status: 🔥 Actively building
+Expected Graduation: May 2027`;
+        },
+        'skills': () => {
+            return `Technical Skills:
+Languages: Python, TypeScript, JavaScript, Java, C++, R, SQL, COBOL, JCL
+Frameworks: React, Node.js, Flask, FastAPI, TensorFlow, PyTorch
+Cloud: AWS, Azure, Google Cloud
+Databases: PostgreSQL, MongoDB, SQLite
+Tools: Git, Docker, CI/CD, Kubernetes`;
+        },
+        'projects': () => {
+            return `Featured Projects:
+• AGM SDS Platform - Seafarer assignment platform (React, Node.js)
+• TutorSwap Platform - Full-stack peer tutoring platform (React, Flask)
+• Forget-Me-Not IoT System - Automated plant watering (Arduino, CAD)
+• Satellite Maneuver Optimization - Orbital mechanics research (R, Math)`;
+        },
+        'contact': () => {
+            return `Contact Information:
+Email: adeetya.upadhyay@gmail.com
+LinkedIn: linkedin.com/in/adeetya-upadhyay
+GitHub: github.com/adeetya-u
+Location: Champaign, IL`;
+        },
+        'github': () => {
+            window.open('https://github.com/adeetya-u', '_blank');
+            return 'Opening GitHub profile...';
+        },
+        'linkedin': () => {
+            window.open('https://www.linkedin.com/in/adeetya-upadhyay/', '_blank');
+            return 'Opening LinkedIn profile...';
+        },
+        'email': () => {
+            const subject = encodeURIComponent('Portfolio Contact - Message from Website');
+            const body = encodeURIComponent('Hi Adeetya,\n\nI found your portfolio and would like to connect!\n\nBest regards,\n[Your Name]');
+            window.location.href = `mailto:adeetya.upadhyay@gmail.com?subject=${subject}&body=${body}`;
+            return 'Opening email client...';
+        },
+        'clear': () => {
+            const lines = terminalContent.querySelectorAll('.terminal-line');
+            lines.forEach(line => line.remove());
+            addNewLine();
+            return null;
+        },
+        'ls': () => {
+            return `total 24
+drwxr-xr-x  4 adeetya adeetya 4096 Jan 15 10:30 .
+drwxr-xr-x  3 adeetya adeetya 4096 Jan 15 10:30 ..
+-rw-r--r--  1 adeetya adeetya  189 Jan 15 10:30 index.html
+-rw-r--r--  1 adeetya adeetya  856 Jan 15 10:30 README.md
+drwxr-xr-x  2 adeetya adeetya 4096 Jan 15 10:30 src
+drwxr-xr-x  2 adeetya adeetya 4096 Jan 15 10:30 assets`;
+        },
+        'pwd': () => {
+            return '/home/adeetya/portfolio';
+        },
+        'whoami': () => {
+            return 'adeetya';
+        },
+        'git': (args) => {
+            if (args.includes('status')) {
+                return `On branch main
+Your branch is up to date with 'origin/main'.
+nothing to commit, working tree clean`;
+            } else if (args.includes('push')) {
+                return `Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+✓ To https://github.com/adeetya-u/adeetya-u.git
+✓ main -> main`;
+            }
+            return 'git: command not found';
+        },
+        'npm': (args) => {
+            if (args.includes('run') && args.includes('dev')) {
+                return `> portfolio@1.0.0 dev
+> next dev
+ready - started server on 0.0.0.0:3000, url: http://localhost:3000
+✓ Ready in 1.2s`;
+            }
+            return 'npm: command not found';
+        },
+        'python': (args) => {
+            if (args.includes('ml_model.py')) {
+                return `Loading TensorFlow model...
+Model accuracy: 94.2%
+✓ Model training completed`;
+            }
+            return 'python: command not found';
+        },
+        'docker': (args) => {
+            if (args.includes('build')) {
+                return `Sending build context to Docker daemon  2.048kB
+Step 1/8 : FROM node:18-alpine
+Step 2/8 : WORKDIR /app
+✓ Successfully built portfolio:latest`;
+            }
+            return 'docker: command not found';
+        }
+    };
+    
+    // Terminal input functionality
+    function addNewLine() {
+        const newLine = document.createElement('div');
+        newLine.className = 'terminal-line';
+        newLine.innerHTML = `
+            <span class="terminal-prompt">adeetya@portfolio:~$</span>
+            <span class="terminal-input" contenteditable="true" data-command=""></span>
+        `;
+        terminalContent.appendChild(newLine);
+        
+        const input = newLine.querySelector('.terminal-input');
+        input.focus();
+        
+        // Handle input events
+        input.addEventListener('keydown', handleTerminalInput);
+        input.addEventListener('input', updateCommand);
+        
+        // Ensure cursor is at the end
+        setTimeout(() => {
+            const range = document.createRange();
+            const sel = window.getSelection();
+            range.selectNodeContents(input);
+            range.collapse(false);
+            sel.removeAllRanges();
+            sel.addRange(range);
+        }, 0);
+        
+        return input;
+    }
+    
+    function handleTerminalInput(e) {
+        const input = e.target;
+        const command = input.textContent.trim();
+        
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            executeCommand(command, input);
+        } else if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            navigateHistory('up');
+        } else if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            navigateHistory('down');
+        } else if (e.key === 'Tab') {
+            e.preventDefault();
+            autoComplete(command, input);
+        }
+    }
+    
+    function updateCommand(e) {
+        currentCommand = e.target.textContent;
+    }
+    
+    function navigateHistory(direction) {
+        if (commandHistory.length === 0) return;
+        
+        const input = document.querySelector('.terminal-input[contenteditable="true"]');
+        if (!input) return;
+        
+        if (direction === 'up') {
+            if (historyIndex > 0) {
+                historyIndex--;
+                input.textContent = commandHistory[historyIndex];
+            }
+        } else if (direction === 'down') {
+            if (historyIndex < commandHistory.length - 1) {
+                historyIndex++;
+                input.textContent = commandHistory[historyIndex];
+            } else {
+                historyIndex = commandHistory.length;
+                input.textContent = '';
+            }
+        }
+        
+        // Move cursor to end
+        const range = document.createRange();
+        const sel = window.getSelection();
+        range.selectNodeContents(input);
+        range.collapse(false);
+        sel.removeAllRanges();
+        sel.addRange(range);
+    }
+    
+    function autoComplete(command, input) {
+        const suggestions = Object.keys(commands).filter(cmd => 
+            cmd.startsWith(command)
+        );
+        
+        if (suggestions.length === 1) {
+            input.textContent = suggestions[0] + ' ';
+        } else if (suggestions.length > 1) {
+            // Show suggestions
+            const suggestionLine = document.createElement('div');
+            suggestionLine.className = 'terminal-line terminal-output';
+            suggestionLine.textContent = suggestions.join('  ');
+            terminalContent.appendChild(suggestionLine);
+        }
+    }
+    
+    // Initialize terminal with interactive input
+    function initializeTerminal() {
+        // Clear existing content
+        terminalContent.innerHTML = '';
+        
+        // Add initial commands
+        const initialCommands = [
+            'whoami',
+            'pwd', 
+            'ls -la',
+            'git status',
+            'npm run dev',
+            'python ml_model.py',
+            'docker build -t portfolio .',
+            'git push origin main',
+            'help'
+        ];
+        
+        initialCommands.forEach((cmd, index) => {
+            const line = document.createElement('div');
+            line.className = 'terminal-line';
+            line.innerHTML = `
+                <span class="terminal-prompt">adeetya@portfolio:~$</span>
+                <span class="terminal-command">${cmd}</span>
+            `;
+            terminalContent.appendChild(line);
+            
+            // Add output for each command
+            if (cmd === 'whoami') {
+                addOutput('adeetya');
+            } else if (cmd === 'pwd') {
+                addOutput('/home/adeetya/portfolio');
+            } else if (cmd === 'ls -la') {
+                addOutput(`total 24
+drwxr-xr-x  4 adeetya adeetya 4096 Jan 15 10:30 .
+drwxr-xr-x  3 adeetya adeetya 4096 Jan 15 10:30 ..
+-rw-r--r--  1 adeetya adeetya  189 Jan 15 10:30 index.html
+-rw-r--r--  1 adeetya adeetya  856 Jan 15 10:30 README.md
+drwxr-xr-x  2 adeetya adeetya 4096 Jan 15 10:30 src
+drwxr-xr-x  2 adeetya adeetya 4096 Jan 15 10:30 assets`);
+            } else if (cmd === 'git status') {
+                addOutput(`On branch main
+Your branch is up to date with 'origin/main'.
+nothing to commit, working tree clean`);
+            } else if (cmd === 'npm run dev') {
+                addOutput(`> portfolio@1.0.0 dev
+> next dev
+ready - started server on 0.0.0.0:3000, url: http://localhost:3000
+✓ Ready in 1.2s`);
+            } else if (cmd === 'python ml_model.py') {
+                addOutput(`Loading TensorFlow model...
+Model accuracy: 94.2%
+✓ Model training completed`);
+            } else if (cmd === 'docker build -t portfolio .') {
+                addOutput(`Sending build context to Docker daemon  2.048kB
+Step 1/8 : FROM node:18-alpine
+Step 2/8 : WORKDIR /app
+✓ Successfully built portfolio:latest`);
+            } else if (cmd === 'git push origin main') {
+                addOutput(`Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+✓ To https://github.com/adeetya-u/adeetya-u.git
+✓ main -> main`);
+            } else if (cmd === 'help') {
+                addOutput(`Available commands:
+• help - Show this help message
+• about - Show developer information
+• skills - Display technical skills
+• projects - List portfolio projects
+• contact - Show contact information
+• github - Open GitHub profile
+• linkedin - Open LinkedIn profile
+• email - Send email
+• clear - Clear terminal
+• ls, pwd, whoami - Standard Unix commands`);
+            }
+        });
+        
+        // Add interactive input line
+        addNewLine();
+    }
+    
+    function addOutput(text) {
+        const outputLine = document.createElement('div');
+        outputLine.className = 'terminal-line terminal-output';
+        outputLine.textContent = text;
+        terminalContent.appendChild(outputLine);
+    }
+    
+    function executeCommand(command, inputElement) {
+        if (!command) {
+            addNewLine();
+            return;
+        }
+        
+        // Add to history
+        commandHistory.push(command);
+        historyIndex = commandHistory.length;
+        
+        // Make input non-editable
+        inputElement.contentEditable = false;
+        inputElement.classList.add('terminal-command');
+        
+        // Parse command and arguments
+        const parts = command.split(' ');
+        const cmd = parts[0];
+        const args = parts.slice(1);
+        
+        // Execute command
+        let output = '';
+        if (commands[cmd]) {
+            output = commands[cmd](args);
+        } else {
+            output = `${cmd}: command not found`;
+        }
+        
+        // Display output
+        if (output) {
+            const outputLine = document.createElement('div');
+            outputLine.className = 'terminal-line terminal-output';
+            outputLine.textContent = output;
+            terminalContent.appendChild(outputLine);
+        }
+        
+        // Add new line
+        addNewLine();
+        
+        // Scroll to bottom
+        terminalContent.scrollTop = terminalContent.scrollHeight;
+    }
+    
+    // Initialize terminal when page loads
+    initializeTerminal();
+    
+    // Focus terminal when clicked
+    terminalContent.addEventListener('click', function(e) {
+        if (e.target === terminalContent) {
+            const lastInput = terminalContent.querySelector('.terminal-input[contenteditable="true"]');
+            if (lastInput) {
+                lastInput.focus();
+            }
+        }
+    });
+
+    // Terminal resize functionality
+    terminalResizeHandle.addEventListener('mousedown', function(e) {
+        isResizing = true;
+        startY = e.clientY;
+        startHeight = parseInt(document.defaultView.getComputedStyle(terminalPane).height, 10);
+        document.addEventListener('mousemove', handleResize);
+        document.addEventListener('mouseup', stopResize);
+        e.preventDefault();
+    });
+
+    function handleResize(e) {
+        if (!isResizing) return;
+        
+        const delta = startY - e.clientY;
+        let newHeight = startHeight + delta;
+        
+        // Enforce min and max height
+        const minHeight = 17;
+        const maxHeight = window.innerHeight * 0.4; // Max 40% of viewport
+        newHeight = Math.max(minHeight, Math.min(newHeight, maxHeight));
+        
+        terminalPane.style.height = newHeight + 'px';
+        lastHeight = newHeight; // Store the current height
+        
+        // Update editor container height for new terminal height
+        updateEditorContainerHeight(newHeight);
+    }
+
+    function stopResize() {
+        isResizing = false;
+        document.removeEventListener('mousemove', handleResize);
+        document.removeEventListener('mouseup', stopResize);
+    }
+
+    // Terminal collapse/expand functionality
+    terminalCollapseBtn.addEventListener('click', function() {
+        if (isCollapsed) {
+            // Expand terminal
+            terminalPane.classList.remove('collapsed');
+            terminalPane.style.height = lastHeight + 'px';
+            isCollapsed = false;
+            updateEditorContainerHeight(lastHeight);
+        } else {
+            // Collapse terminal - store current height before collapsing
+            lastHeight = parseInt(document.defaultView.getComputedStyle(terminalPane).height, 10);
+            terminalPane.classList.add('collapsed');
+            isCollapsed = true;
+            updateEditorContainerHeight(17); // Collapsed height
+        }
+    });
+
+    // Update editor container height based on terminal state
+    function updateEditorContainerHeight(terminalHeight) {
+        const editorContainer = document.querySelector('.editor-container');
+        
+        if (editorContainer) {
+            if (isCollapsed) {
+                // Terminal is collapsed, remove height constraint
+                editorContainer.classList.remove('terminal-visible');
+                editorContainer.style.removeProperty('--terminal-height');
+            } else {
+                // Terminal is expanded, adjust editor height
+                editorContainer.classList.add('terminal-visible');
+                editorContainer.style.setProperty('--terminal-height', terminalHeight + 'px');
+            }
+        }
+    }
+
+    // Initialize terminal as open by default
+    isCollapsed = false;
+    terminalPane.classList.remove('collapsed');
+    updateEditorContainerHeight(150); // Default height
+    
+    // Window resize listener
+    window.addEventListener('resize', function() {
+        // Update editor height based on current terminal state
+        const currentTerminalHeight = isCollapsed ? 17 : parseInt(document.defaultView.getComputedStyle(terminalPane).height, 10);
+        updateEditorContainerHeight(currentTerminalHeight);
+    });
+
+    // Prevent text selection while resizing
+    terminalResizeHandle.addEventListener('selectstart', function(e) {
+        e.preventDefault();
+    });
+
+    // Optional: Double-click resize handle to reset to default height
+    terminalResizeHandle.addEventListener('dblclick', function() {
+        if (!isCollapsed) {
+            terminalPane.style.height = '150px';
+            lastHeight = 150;
+            updateEditorContainerHeight(150);
+        }
+    });
+
+
+    
+
+    
     // Initialize with Welcome.md active
     showContent('Welcome.md');
+    
+    // Simple protection against inspection
+    setTimeout(function() {
+        // Disable right-click
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            return false;
+        });
+        
+        // Disable F12 and other dev tools shortcuts
+        document.addEventListener('keydown', function(e) {
+            if (
+                e.key === 'F12' ||
+                (e.ctrlKey && e.shiftKey && e.key === 'I') ||
+                (e.ctrlKey && e.key === 'u') ||
+                (e.ctrlKey && e.shiftKey && e.key === 'C')
+            ) {
+                e.preventDefault();
+                return false;
+            }
+        });
+        
+        // Disable text selection
+        document.addEventListener('selectstart', function(e) {
+            e.preventDefault();
+            return false;
+        });
+        
+        // Disable copy
+        document.addEventListener('copy', function(e) {
+            e.preventDefault();
+            return false;
+        });
+        
+        // Dev tools detection
+        let devToolsOpen = false;
+        setInterval(function() {
+            const threshold = 160;
+            const widthThreshold = window.outerWidth - window.innerWidth > threshold;
+            const heightThreshold = window.outerHeight - window.innerHeight > threshold;
+            
+            if (widthThreshold || heightThreshold) {
+                if (!devToolsOpen) {
+                    devToolsOpen = true;
+                    document.body.innerHTML = '<div style="text-align:center;padding:100px;color:#ff0000;font-size:24px;background:#000;height:100vh;display:flex;align-items:center;justify-content:center;"><div><h1>⚠️ Developer Tools Detected!</h1><p style="color:#fff;">Close developer tools to continue.</p></div></div>';
+                }
+            } else {
+                if (devToolsOpen) {
+                    devToolsOpen = false;
+                    location.reload();
+                }
+            }
+        }, 500);
+        
+    }, 2000); // Wait 2 seconds for page to load
 });
 </script>
 
