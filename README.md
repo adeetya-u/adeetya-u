@@ -13,8 +13,14 @@
 ## GitHub Statistics
 
 <div align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=adeetya-u&show_icons=true&theme=github&hide_border=true&show_owner=true&count_private=true&rank_icon=github" alt="GitHub Stats" />
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=adeetya-u&layout=compact&theme=github&hide_border=true&langs_count=5&count_private=true&exclude_repo=adeetya-u,adeetya-u.github.io&custom_title=Most%20Used%20Languages" alt="Top Languages" />
+  <picture>
+    <source media="(prefers-color-scheme: light)" srcset="https://github-readme-stats.vercel.app/api?username=adeetya-u&show_icons=true&theme=default&hide_border=true&show_owner=true&count_private=true&rank_icon=github">
+    <img src="https://github-readme-stats.vercel.app/api?username=adeetya-u&show_icons=true&theme=github&hide_border=true&show_owner=true&count_private=true&rank_icon=github" alt="GitHub Stats" />
+  </picture>
+  <picture>
+    <source media="(prefers-color-scheme: light)" srcset="https://github-readme-stats.vercel.app/api/top-langs/?username=adeetya-u&layout=compact&theme=default&hide_border=true&langs_count=5&count_private=true&exclude_repo=adeetya-u,adeetya-u.github.io&custom_title=Most%20Used%20Languages">
+    <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=adeetya-u&layout=compact&theme=github&hide_border=true&langs_count=5&count_private=true&exclude_repo=adeetya-u,adeetya-u.github.io&custom_title=Most%20Used%20Languages" alt="Top Languages" />
+  </picture>
 </div>
 
 ---
