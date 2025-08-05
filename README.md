@@ -55,8 +55,8 @@
 
 <div align="center">
 
-<table style="border-collapse: collapse; background: transparent;">
-  <tr>
+<table style="border-collapse: collapse; border: none; background: transparent; width: 100%;">
+  <tr style="border: none;">
     <td width="50%" style="border: none; padding: 5px; background: transparent;">
       <a href="https://github.com/adeetya-u/AGM-SDS" target="_blank">
         <picture>
@@ -74,7 +74,7 @@
       </a>
     </td>
   </tr>
-  <tr>
+  <tr style="border: none;">
     <td width="50%" style="border: none; padding: 5px; background: transparent;">
       <a href="https://github.com/adeetya-u/ReverseDCF" target="_blank">
         <picture>
@@ -120,5 +120,5 @@
 ---
 
 <div align="center">
-<sub><strong>Acta, non Verba</strong> — Actions, not words</sub>
+<sub><strong>Acta, non Verba</strong></sub>
 </div>
