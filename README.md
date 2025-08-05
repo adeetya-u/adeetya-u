@@ -10,18 +10,20 @@
 
 ---
 
-## 📊 GitHub Stats
+## GitHub Statistics
 
 <div align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=adeetya-u&show_icons=true&theme=dark&bg_color=0d1117&title_color=58a6ff&text_color=c9d1d9&icon_color=79c0ff&border_color=21262d&hide_border=true&show_owner=true&count_private=true" alt="GitHub Stats" />
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=adeetya-u&layout=compact&theme=dark&bg_color=0d1117&title_color=58a6ff&text_color=c9d1d9&border_color=21262d&hide_border=true&langs_count=6" alt="Top Languages" />
+  <img src="https://github-readme-stats.vercel.app/api?username=adeetya-u&show_icons=true&theme=github&hide_border=true&show_owner=true&count_private=true" alt="GitHub Stats" />
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=adeetya-u&layout=compact&theme=github&hide_border=true&langs_count=6" alt="Top Languages" />
 </div>
 
 ---
 
-## 🛠️ Tech Stack
+## Technical Skills
 
-### Languages
+<div align="center">
+
+### Programming Languages
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
 ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white)
 ![C++](https://img.shields.io/badge/c++-%2300599C.svg?style=for-the-badge&logo=c%2B%2B&logoColor=white)
@@ -30,7 +32,7 @@
 ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
 ![COBOL](https://img.shields.io/badge/cobol-%23005AA0.svg?style=for-the-badge&logo=cobol&logoColor=white)
 
-### Frameworks & Cloud
+### Frameworks & Cloud Infrastructure
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
 ![Node.js](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
 ![Flask](https://img.shields.io/badge/flask-%23000.svg?style=for-the-badge&logo=flask&logoColor=white)
@@ -38,40 +40,73 @@
 ![AWS](https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white)
 ![Azure](https://img.shields.io/badge/azure-%230072C6.svg?style=for-the-badge&logo=microsoftazure&logoColor=white)
 
-### Data & ML
+### Data Science & Machine Learning
 ![NumPy](https://img.shields.io/badge/numpy-%23013243.svg?style=for-the-badge&logo=numpy&logoColor=white)
 ![Pandas](https://img.shields.io/badge/pandas-%23150458.svg?style=for-the-badge&logo=pandas&logoColor=white)
 ![scikit-learn](https://img.shields.io/badge/scikit--learn-%23F7931E.svg?style=for-the-badge&logo=scikit-learn&logoColor=white)
 ![TensorFlow](https://img.shields.io/badge/TensorFlow-%23FF6F00.svg?style=for-the-badge&logo=TensorFlow&logoColor=white)
 ![PyTorch](https://img.shields.io/badge/PyTorch-%23EE4C2C.svg?style=for-the-badge&logo=PyTorch&logoColor=white)
 
+</div>
+
 ---
 
-## 🚀 Featured Projects
+## Featured Projects
 
 <div align="center">
 
-[![AGM SDS Platform](project-cards/AGM-SDS-card.svg)](https://github.com/adeetya-u/AGM-SDS)
-
-[![TutorSwap Project](project-cards/team-69-project-updated.svg)](https://github.com/CS222-UIUC/team-69-project)
-
-[![ReverseDCF Project](project-cards/ReverseDCF-card.svg)](https://github.com/adeetya-u/ReverseDCF)
-
-[![Face Recognition Attendance System](project-cards/Face-Recognition-Attendance-System-card.svg)](https://github.com/kmhmubin/Face-Recognition-Attendance-System)
+<table>
+  <tr>
+    <td width="50%">
+      <a href="https://github.com/adeetya-u/AGM-SDS" target="_blank">
+        <picture>
+          <source media="(prefers-color-scheme: light)" srcset="project-cards/AGM-SDS-light-theme.svg">
+          <img src="project-cards/AGM-SDS-card.svg" alt="AGM SDS Platform" width="100%">
+        </picture>
+      </a>
+    </td>
+    <td width="50%">
+      <a href="https://github.com/CS222-UIUC/team-69-project" target="_blank">
+        <picture>
+          <source media="(prefers-color-scheme: light)" srcset="project-cards/team-69-project-light-theme.svg">
+          <img src="project-cards/team-69-project-updated.svg" alt="TutorSwap Project" width="100%">
+        </picture>
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%">
+      <a href="https://github.com/adeetya-u/ReverseDCF" target="_blank">
+        <picture>
+          <source media="(prefers-color-scheme: light)" srcset="project-cards/ReverseDCF-light-theme.svg">
+          <img src="project-cards/ReverseDCF-card.svg" alt="ReverseDCF Project" width="100%">
+        </picture>
+      </a>
+    </td>
+    <td width="50%">
+      <a href="https://github.com/kmhmubin/Face-Recognition-Attendance-System" target="_blank">
+        <picture>
+          <source media="(prefers-color-scheme: light)" srcset="project-cards/Face-Recognition-Attendance-System-light-theme.svg">
+          <img src="project-cards/Face-Recognition-Attendance-System-card.svg" alt="Face Recognition Attendance System" width="100%">
+        </picture>
+      </a>
+    </td>
+  </tr>
+</table>
 
 </div>
 
 ---
 
-## 📍 Current Focus
+## Current Focus
 
-> **Building ML pipelines, full-stack applications, and AI-powered solutions**  
+> **Building machine learning pipelines, full-stack applications, and AI-powered solutions**  
 > **Expected graduation: May 2027**  
-> **Location:** Champaign, IL | **University:** UIUC | **Status:** Actively Building
+> **Location:** Champaign, IL | **University:** UIUC | **Status:** Actively developing
 
 ---
 
-## 📞 Connect
+## Professional Contact
 
 <div align="center">
 
