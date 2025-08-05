@@ -14,12 +14,12 @@
 
 <div align="center">
   <picture>
-    <source media="(prefers-color-scheme: light)" srcset="https://github-readme-stats.vercel.app/api?username=adeetya-u&show_icons=true&theme=default&hide_border=true&show_owner=true&count_private=true&rank_icon=github&bg_color=ffffff00">
-    <img src="https://github-readme-stats.vercel.app/api?username=adeetya-u&show_icons=true&theme=github&hide_border=true&show_owner=true&count_private=true&rank_icon=github&bg_color=ffffff00" alt="GitHub Stats" />
+    <source media="(prefers-color-scheme: light)" srcset="https://github-readme-stats.vercel.app/api?username=adeetya-u&show_icons=true&theme=default&hide_border=true&show_owner=true&count_private=true&rank_icon=github&bg_color=ffffff">
+    <img src="https://github-readme-stats.vercel.app/api?username=adeetya-u&show_icons=true&theme=github&hide_border=true&show_owner=true&count_private=true&rank_icon=github&bg_color=252526" alt="GitHub Stats" />
   </picture>
   <picture>
-    <source media="(prefers-color-scheme: light)" srcset="https://github-readme-stats.vercel.app/api/top-langs/?username=adeetya-u&layout=compact&theme=default&hide_border=true&langs_count=5&count_private=true&exclude_repo=adeetya-u,adeetya-u.github.io&custom_title=Most%20Used%20Languages&bg_color=ffffff00">
-    <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=adeetya-u&layout=compact&theme=github&hide_border=true&langs_count=5&count_private=true&exclude_repo=adeetya-u,adeetya-u.github.io&custom_title=Most%20Used%20Languages&bg_color=ffffff00" alt="Top Languages" />
+    <source media="(prefers-color-scheme: light)" srcset="https://github-readme-stats.vercel.app/api/top-langs/?username=adeetya-u&layout=compact&theme=default&hide_border=true&langs_count=5&count_private=true&exclude_repo=adeetya-u,adeetya-u.github.io&custom_title=Most%20Used%20Languages&bg_color=ffffff">
+    <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=adeetya-u&layout=compact&theme=github&hide_border=true&langs_count=5&count_private=true&exclude_repo=adeetya-u,adeetya-u.github.io&custom_title=Most%20Used%20Languages&bg_color=252526" alt="Top Languages" />
   </picture>
 </div>
 
