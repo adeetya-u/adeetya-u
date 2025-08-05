@@ -14,7 +14,7 @@
 
 <div align="center">
   <img src="https://github-readme-stats.vercel.app/api?username=adeetya-u&show_icons=true&theme=github&hide_border=true&show_owner=true&count_private=true&rank_icon=github" alt="GitHub Stats" />
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=adeetya-u&layout=compact&theme=github&hide_border=true&langs_count=5&count_private=true&exclude_repo=adeetya-u,adeetya-u.github.io&custom_title=Most%20Used%20Languages&langs_count=5&layout=compact&card_width=300" alt="Top Languages" />
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=adeetya-u&layout=compact&theme=github&hide_border=true&langs_count=5&count_private=true&exclude_repo=adeetya-u,adeetya-u.github.io&custom_title=Most%20Used%20Languages" alt="Top Languages" />
 </div>
 
 ---
