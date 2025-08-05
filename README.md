@@ -1,1 +1,1 @@
-[![Portfolio Screenshot](https://svg-screenshot-api.vercel.app/api?url=https://adeetya-u.github.io/&width=1200&height=800&fullPage=true)](https://adeetya-u.github.io/)
+[![Portfolio Screenshot](https://image.thum.io/get/width/1200/crop/800/https://adeetya-u.github.io/)](https://adeetya-u.github.io/)
