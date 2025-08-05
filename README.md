@@ -13,8 +13,8 @@
 ## GitHub Statistics
 
 <div align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=adeetya-u&show_icons=true&theme=github&hide_border=true&show_owner=true&count_private=true" alt="GitHub Stats" />
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=adeetya-u&layout=compact&theme=github&hide_border=true&langs_count=6" alt="Top Languages" />
+  <img src="https://github-readme-stats.vercel.app/api?username=adeetya-u&show_icons=true&theme=github&hide_border=true&show_owner=true&count_private=true&rank_icon=github" alt="GitHub Stats" />
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=adeetya-u&layout=compact&theme=github&hide_border=true&langs_count=5" alt="Top Languages" />
 </div>
 
 ---
@@ -55,9 +55,9 @@
 
 <div align="center">
 
-<table>
+<table style="border-collapse: collapse;">
   <tr>
-    <td width="50%">
+    <td width="50%" style="border: none; padding: 5px;">
       <a href="https://github.com/adeetya-u/AGM-SDS" target="_blank">
         <picture>
           <source media="(prefers-color-scheme: light)" srcset="project-cards/AGM-SDS-light-theme.svg">
@@ -65,7 +65,7 @@
         </picture>
       </a>
     </td>
-    <td width="50%">
+    <td width="50%" style="border: none; padding: 5px;">
       <a href="https://github.com/CS222-UIUC/team-69-project" target="_blank">
         <picture>
           <source media="(prefers-color-scheme: light)" srcset="project-cards/team-69-project-light-theme.svg">
@@ -75,7 +75,7 @@
     </td>
   </tr>
   <tr>
-    <td width="50%">
+    <td width="50%" style="border: none; padding: 5px;">
       <a href="https://github.com/adeetya-u/ReverseDCF" target="_blank">
         <picture>
           <source media="(prefers-color-scheme: light)" srcset="project-cards/ReverseDCF-light-theme.svg">
@@ -83,7 +83,7 @@
         </picture>
       </a>
     </td>
-    <td width="50%">
+    <td width="50%" style="border: none; padding: 5px;">
       <a href="https://github.com/kmhmubin/Face-Recognition-Attendance-System" target="_blank">
         <picture>
           <source media="(prefers-color-scheme: light)" srcset="project-cards/Face-Recognition-Attendance-System-light-theme.svg">
@@ -106,7 +106,7 @@
 
 ---
 
-## Professional Contact
+## Contact
 
 <div align="center">
 
