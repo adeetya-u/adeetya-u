@@ -14,7 +14,20 @@
 
 <div align="center">
   <img src="https://github-readme-stats.vercel.app/api?username=adeetya-u&show_icons=true&theme=github&hide_border=true&show_owner=true&count_private=true&rank_icon=github" alt="GitHub Stats" />
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=adeetya-u&layout=compact&theme=github&hide_border=true&langs_count=5" alt="Top Languages" />
+</div>
+
+### Most Used Languages
+
+<div align="center">
+
+| Language | Percentage |
+|:--------:|:----------:|
+| Python   | 28.47%     |
+| JavaScript | 24.83%   |
+| SQL      | 19.56%     |
+| C++      | 13.92%     |
+| Java     | 13.22%     |
+
 </div>
 
 ---
