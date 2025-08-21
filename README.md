@@ -13,7 +13,7 @@
 ## GitHub Statistics
 
 <div align="center">
-  <table style="border-collapse: collapse; background: transparent;">
+  <table style="border-collapse: collapse; background: transparent; border: none;">
     <tr style="border: none;">
       <td width="50%" style="border: none; padding: 5px; background: transparent;">
         <picture>
