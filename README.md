@@ -13,15 +13,15 @@
 ## GitHub Statistics
 
 <div align="center">
-  <table style="border-collapse: collapse; background: transparent; border: none;">
-    <tr style="border: none;">
-      <td width="50%" style="border: none; padding: 5px; background: transparent;">
+  <table border="0" cellpadding="5" cellspacing="0" width="100%">
+    <tr>
+      <td width="50%" align="center">
         <picture>
           <source media="(prefers-color-scheme: light)" srcset="https://github-readme-stats.vercel.app/api?username=adeetya-u&show_icons=true&theme=default&hide_border=true&show_owner=true&count_private=true&rank_icon=github&bg_color=ffffff">
           <img src="https://github-readme-stats.vercel.app/api?username=adeetya-u&show_icons=true&theme=github&hide_border=true&show_owner=true&count_private=true&rank_icon=github&bg_color=252526&title_color=4ec9b0&text_color=ffffff&icon_color=0078d4&border_color=3e3e42" alt="GitHub Stats" />
         </picture>
       </td>
-      <td width="50%" style="border: none; padding: 5px; background: transparent;">
+      <td width="50%" align="center">
         <img src="https://github.com/adeetya-u/adeetya-u.github.io/blob/main/output/full_languages.svg" alt="Most Used Languages" />
       </td>
     </tr>
@@ -66,9 +66,9 @@
 
 <div align="center">
 
-<table style="border-collapse: collapse; border: none; background: transparent; width: 100%;">
-  <tr style="border: none;">
-    <td width="50%" style="border: none; padding: 5px; background: transparent;">
+<table border="0" cellpadding="5" cellspacing="0" width="100%">
+  <tr>
+    <td width="50%" align="center">
       <a href="https://github.com/adeetya-u/AGM-SDS" target="_blank">
         <picture>
           <source media="(prefers-color-scheme: light)" srcset="project-cards/AGM-SDS-light-theme.svg">
@@ -76,7 +76,7 @@
         </picture>
       </a>
     </td>
-    <td width="50%" style="border: none; padding: 5px; background: transparent;">
+    <td width="50%" align="center">
       <a href="https://github.com/CS222-UIUC/team-69-project" target="_blank">
         <picture>
           <source media="(prefers-color-scheme: light)" srcset="project-cards/team-69-project-light-theme.svg">
@@ -85,8 +85,8 @@
       </a>
     </td>
   </tr>
-  <tr style="border: none;">
-    <td width="50%" style="border: none; padding: 5px; background: transparent;">
+  <tr>
+    <td width="50%" align="center">
       <a href="https://github.com/adeetya-u/ReverseDCF" target="_blank">
         <picture>
           <source media="(prefers-color-scheme: light)" srcset="project-cards/ReverseDCF-light-theme.svg">
@@ -94,7 +94,7 @@
         </picture>
       </a>
     </td>
-    <td width="50%" style="border: none; padding: 5px; background: transparent;">
+    <td width="50%" align="center">
       <a href="https://github.com/kmhmubin/Face-Recognition-Attendance-System" target="_blank">
         <picture>
           <source media="(prefers-color-scheme: light)" srcset="project-cards/Face-Recognition-Attendance-System-light-theme.svg">
