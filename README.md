@@ -13,11 +13,19 @@
 ## GitHub Statistics
 
 <div align="center">
-  <picture>
-    <source media="(prefers-color-scheme: light)" srcset="https://github-readme-stats.vercel.app/api?username=adeetya-u&show_icons=true&theme=default&hide_border=true&show_owner=true&count_private=true&rank_icon=github&bg_color=ffffff">
-    <img src="https://github-readme-stats.vercel.app/api?username=adeetya-u&show_icons=true&theme=github&hide_border=true&show_owner=true&count_private=true&rank_icon=github&bg_color=252526&title_color=4ec9b0&text_color=ffffff&icon_color=0078d4&border_color=3e3e42" alt="GitHub Stats" />
-  </picture>
-  <img src="https://github.com/adeetya-u/adeetya-u.github.io/blob/main/output/full_languages.svg" alt="Most Used Languages" />
+  <table style="border-collapse: collapse; background: transparent;">
+    <tr style="border: none;">
+      <td width="50%" style="border: none; padding: 5px; background: transparent;">
+        <picture>
+          <source media="(prefers-color-scheme: light)" srcset="https://github-readme-stats.vercel.app/api?username=adeetya-u&show_icons=true&theme=default&hide_border=true&show_owner=true&count_private=true&rank_icon=github&bg_color=ffffff">
+          <img src="https://github-readme-stats.vercel.app/api?username=adeetya-u&show_icons=true&theme=github&hide_border=true&show_owner=true&count_private=true&rank_icon=github&bg_color=252526&title_color=4ec9b0&text_color=ffffff&icon_color=0078d4&border_color=3e3e42" alt="GitHub Stats" />
+        </picture>
+      </td>
+      <td width="50%" style="border: none; padding: 5px; background: transparent;">
+        <img src="https://github.com/adeetya-u/adeetya-u.github.io/blob/main/output/full_languages.svg" alt="Most Used Languages" />
+      </td>
+    </tr>
+  </table>
 </div>
 
 ---
