@@ -17,10 +17,7 @@
     <source media="(prefers-color-scheme: light)" srcset="https://github-readme-stats.vercel.app/api?username=adeetya-u&show_icons=true&theme=default&hide_border=true&show_owner=true&count_private=true&rank_icon=github&bg_color=ffffff">
     <img src="https://github-readme-stats.vercel.app/api?username=adeetya-u&show_icons=true&theme=github&hide_border=true&show_owner=true&count_private=true&rank_icon=github&bg_color=252526&title_color=4ec9b0&text_color=ffffff&icon_color=0078d4&border_color=3e3e42" alt="GitHub Stats" />
   </picture>
-  <picture>
-    <source media="(prefers-color-scheme: light)" srcset="https://github-readme-stats.vercel.app/api/top-langs/?username=adeetya-u&layout=compact&theme=default&hide_border=true&langs_count=5&count_private=true&exclude_repo=adeetya-u,adeetya-u.github.io&custom_title=Most%20Used%20Languages&bg_color=ffffff">
-    <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=adeetya-u&layout=compact&theme=github&hide_border=true&langs_count=5&count_private=true&exclude_repo=adeetya-u,adeetya-u.github.io&custom_title=Most%20Used%20Languages&bg_color=252526&title_color=4ec9b0&text_color=ffffff&icon_color=0078d4&border_color=3e3e42" alt="Top Languages" />
-  </picture>
+  <img src="https://github.com/adeetya-u/adeetya-u.github.io/blob/main/output/full_languages.svg" alt="Most Used Languages" />
 </div>
 
 ---
