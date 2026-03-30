@@ -1,4 +1,4 @@
-[![Portfolio](https://image.thum.io/get/width/1200/crop/800/https://adeetya-u.github.io/)](https://adeetya-u.github.io/)
+[![Portfolio](https://image.thum.io/get/width/1200/crop/800/https://adeetya.dev)](https://adeetya.dev)
 
 <div align="center">
 
