@@ -4,7 +4,7 @@
 
 # Adeetya Upadhyay
 
-**Full Stack Developer & ML Engineer** | **Illinois '27** | **CS, Advertising, Econometrics**
+**Infra Software Engineer** | **Illinois '27** | **CS, Advertising, Econometrics**
 
 </div>
 
